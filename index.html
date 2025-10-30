@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MarketPulse — Real-Time Stock & Crypto Dashboard</title>
+    <script>
+      (function(){
+        try{
+          var t = localStorage.getItem('mp_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isDark = t === 'dark' || (!t && prefersDark);
+          if(isDark) document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+        }catch(e){}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

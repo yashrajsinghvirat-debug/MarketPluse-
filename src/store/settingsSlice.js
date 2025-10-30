@@ -3,8 +3,17 @@ import { getEnv } from '../utils/env'
 
 const env = getEnv()
 
+function getInitialTheme(){
+  const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('mp_theme') : null
+  if (saved) return saved
+  try {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark'
+  } catch {}
+  return 'light'
+}
+
 const initialState = {
-  theme: (localStorage.getItem('mp_theme') || 'light'),
+  theme: getInitialTheme(),
   currency: (localStorage.getItem('mp_currency') || (env.VITE_DEFAULT_CURRENCY || 'USD')),
 }
 
